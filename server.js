@@ -1,34 +1,43 @@
-const express = require('express')
+// Importa o módulo Express
+const express = require('express');
+// Importa o módulo express-ejs-layouts
 const expressEjsLayout = require('express-ejs-layouts');
-let homeRoute = require("./routes/homeRoute");
-let usuarioRoute = require("./routes/usuarioRoute");
-let loginRoute = require("./routes/loginRoute");
+// Cria uma instância do aplicativo Express
 const app = express();
 
-//configura o ejs como view engine da nossa aplicação
 
-//configura a localização da pasta views
+//---- configura a localização da pasta views ----
+// Configura a pasta de views
 app.set("views", "./views");
+// Define o EJS como o motor de views
 app.set("view engine", "ejs");
+// Define o layout padrão
 app.set("layout", "./layout");
 
+
+// Middleware para parsear requests com URL encoded bodies
 app.use(express.urlencoded({extended:true}));
+// Middleware para parsear requests JSON
 app.use(express.json());
-app.use(express.static("public"))
+// Serve arquivos estáticos da pasta public
+app.use(express.static("public"));
+// Usa o módulo express-ejs-layouts
 app.use(expressEjsLayout);
 
-
-//configura as rotas existentes no nosso sistema
-app.use("/",  homeRoute);
-app.use("/usuarios", usuarioRoute);
-app.use("/login", loginRoute);
+//---- Configuções de Rotas existentes no nosso sistema ----
 
 
 
-//inicia o nosso servidor web
+// Inicia o servidor na porta 5000
 app.listen(5000, function() {
-    console.log("servidor web iniciado")
-})
+  console.log("Servidor web iniciado");
+});
+
+
+
+
+
+
 
 
 
