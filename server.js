@@ -2,6 +2,7 @@
 const express = require('express');
 // Importa o módulo express-ejs-layouts
 const expressEjsLayout = require('express-ejs-layouts');
+const homeRoute = require('./routes/homeRoute')
 // Cria uma instância do aplicativo Express
 const app = express();
 
@@ -15,7 +16,6 @@ app.set("view engine", "ejs");
 app.set("layout", "./layout");
 
 
-// Middleware para parsear requests com URL encoded bodies
 app.use(express.urlencoded({extended:true}));
 // Middleware para parsear requests JSON
 app.use(express.json());
@@ -25,7 +25,7 @@ app.use(express.static("public"));
 app.use(expressEjsLayout);
 
 //---- Configuções de Rotas existentes no nosso sistema ----
-
+app.use('/', homeRoute);
 
 
 // Inicia o servidor na porta 5000
