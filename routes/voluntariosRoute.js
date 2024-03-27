@@ -5,6 +5,7 @@ const router = express.Router();
 let control = new voluntariosControllers();
 
 router.get('/cadastrar', control.cadastrarVoluntarios)
+router.post('/cadastrar', control.cadastrar)
 router.get('/alterar', control.alterarVoluntarios)
 router.get('/listagem', control.listarVoluntarios)
 
