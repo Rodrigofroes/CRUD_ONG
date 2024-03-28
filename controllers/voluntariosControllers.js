@@ -7,7 +7,10 @@ class voluntariosControllers{
     }
 
     alterarVoluntarios(req, res){
-        res.render('voluntario/alterarVoluntarios');
+        console.log(req.params.id);
+        let usuario = new volutarioModel();
+        let lista = usuario.obter(req.params.id);
+        res.render('voluntario/alterarVoluntarios', {lista: lista});
     }
 
     async listarVoluntarios(req, res){

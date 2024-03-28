@@ -69,8 +69,8 @@ class voluntarioModel {
     constructor(voluntarioId,  voluntarioNome, voluntarioEmail, voluntarioEndereco, voluntarioNasc, voluntarioCep, voluntarioTelefone){
         this.#voluntarioId = voluntarioId;
         this.#voluntarioNome = voluntarioNome;
-        this.#voluntarioEndereco = voluntarioEndereco;
         this.#voluntarioEmail = voluntarioEmail;
+        this.#voluntarioEndereco = voluntarioEndereco;
         this.#voluntarioNasc = voluntarioNasc;
         this.#voluntarioCep = voluntarioCep;
         this.#voluntarioTelefone = voluntarioTelefone;
@@ -79,9 +79,7 @@ class voluntarioModel {
     async cadastrar(){
         if(this.#voluntarioId == 0){
             let sql = "insert teste (nome, email, telefone, data_nasciment, endereco, CEP) values (?,?,?,?,?,?)";
-
             let valores = [this.#voluntarioNome, this.#voluntarioEmail, this.#voluntarioTelefone, this.#voluntarioNasc, this.#voluntarioEndereco, this.#voluntarioCep];
-    
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
     
             return result;
@@ -95,9 +93,25 @@ class voluntarioModel {
         let lista = [];
     
         for(let i = 0; i < rows.length; i++) {
-            lista.push(new voluntarioModel(rows[i]["nome"], rows[i]["email"], rows[i]["telefone"], rows[i]["data_nasciment"]));
+            lista.push(new voluntarioModel(rows[i]["id"],rows[i]["nome"], rows[i]["email"], rows[i]["endereco"], rows[i]["data_nasciment"],  rows[i]["cep"],  rows[i]["telefone"]));
         }
         return lista;
+    }
+
+
+    async obter(id) {
+        let sql = "select * from teste where id = ?";
+
+        let valores = [id];
+
+        let rows = await banco.ExecutaComando(sql, valores);
+
+        if(rows.length > 0) {
+            let row = rows[0];
+            return new UsuarioModel(row["id"], row["nome"], row["email"], row["endereco"], row["data_nasciment"], row["cep"]);
+        }
+
+        return null;
     }
     
 
