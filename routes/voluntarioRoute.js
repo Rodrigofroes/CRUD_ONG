@@ -1,7 +1,7 @@
 const express = require('express');
-const empresaControllers = require('../controllers/empresaController');
+const voluntarioController = require('../controllers/voluntarioController');
 
-let control = new empresaControllers();
+let control = new voluntarioController();
 
 const router = express.Router();
 router.get('/',control.listagemView);

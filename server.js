@@ -3,7 +3,7 @@ const express = require('express');
 // Importa o módulo express-ejs-layouts
 const expressEjsLayout = require('express-ejs-layouts');
 const homeRoute = require('./routes/homeRoute');
-const voluntariosRoute = require('./routes/voluntariosRoute')
+const voluntarioRoute = require('./routes/voluntarioRoute')
 const empresaRoute = require('./routes/empresaRoute');
 // Cria uma instância do aplicativo Express
 const app = express();
@@ -28,7 +28,7 @@ app.use(expressEjsLayout);
 
 //---- Configuções de Rotas existentes no nosso sistema ----
 app.use('/', homeRoute);
-app.use('/voluntarios', voluntariosRoute);
+app.use('/voluntarios', voluntarioRoute);
 app.use('/empresas', empresaRoute);
 
 // Inicia o servidor na porta 5000

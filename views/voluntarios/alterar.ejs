@@ -1,0 +1,65 @@
+<script src="/js/voluntarios/alterar.js"></script>
+
+<div class="container">
+    <h1>Alteração de voluntarios </h1>
+    <div>
+        <% if (typeof msg !="undefined" ) { %>
+            <span>
+                <%= msg %>
+            </span>
+            <% } %>
+    </div>
+    <div>
+        <div>
+            <input id="voluntarioId" hidden value="<%= voluntario.voluntarioId %>">
+
+            <div>
+                <div class="form-group">
+                    <label for="voluntarioNome" class="form-label">Nome</label>
+                    <input value="<%= voluntario.voluntarioNome %>" type="text" class="form-control" id="voluntarioNome"
+                        name="voluntarioNome">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="voluntarioEmail" class="form-label">Email</label>
+                    <input value="<%= voluntario.voluntarioEmail %>" type="text" class="form-control"
+                        id="voluntarioEmail" name="voluntarioEmail">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="voluntarioTelefone" class="form-label">Telefone</label>
+                    <input value="<%= voluntario.voluntarioTelefone %>" type="text" class="form-control"
+                        id="voluntarioTelefone" name="voluntarioTelefone">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="voluntarioDataNasc" class="form-label">Data Nascimento</label>
+                    <input value="<%= voluntario.voluntarioDataNasc %>" type="date" class="form-control"
+                        id="voluntarioDataNasc" name="voluntarioDataNasc">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="voluntarioEndereco" class="form-label">Endereco</label>
+                    <input value="<%= voluntario.voluntarioEndereco %>" type="text" class="form-control"
+                        id="voluntarioEndereco" name="voluntarioEndereco">
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="voluntarioCEP" class="form-label">CEP</label>
+                    <input value="<%= voluntario.voluntarioCEP %>" type="text" class="form-control" id="voluntarioCEP"
+                        name="voluntarioCEP">
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-primary" id="btnAlterar" type="button">Alterar</button>
+                <a class="btn btn-secondary" href="/voluntarios">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
