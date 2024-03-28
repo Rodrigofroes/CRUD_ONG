@@ -60,11 +60,10 @@ class voluntariosControllers{
     }
 
     async alterarValor(req, res){
-        if(req.body.id > 0 && req.body.email != "" && req.body.senha != "" && req.body.nome != "" &&
-        req.body.perfil != '0') {
-            let usuario = new UsuarioModel(req.body.id, req.body.nome, req.body.email, req.body.senha, req.body.ativo, req.body.perfil);
+        if(req.body.nome != "", req.body.email != "", req.body.nascimento != 0, req.body.endereco != "", req.body.cep != 0, req.body.telefone != 0) {
+            let usuario = new voluntarioModel(req.body.id, req.body.nome, req.body.email, req.body.endereco, req.body.nascimento, req.body.cep, req.body.telefone);
 
-            let result = await usuario.cadastrar();
+            let result = await usuario.alterar();
 
             if(result) {
                 res.send({

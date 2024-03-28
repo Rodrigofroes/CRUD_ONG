@@ -121,6 +121,15 @@ class voluntarioModel {
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
         return result;
     }
+
+    async alterar(){
+        let sql = "UPDATE teste SET nome = ?, email = ?, endereco = ?, data_nasciment = ?, cep = ?, telefone = ? where id = ?";
+        let valores = [this.#voluntarioNome, this.#voluntarioEmail, this.#voluntarioEndereco, this.#voluntarioNasc, this.#voluntarioCep, this.#voluntarioTelefone, this.#voluntarioId];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
+    }
 }
 
 module.exports = voluntarioModel;
