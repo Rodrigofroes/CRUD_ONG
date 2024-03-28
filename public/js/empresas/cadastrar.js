@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let cnpj = document.querySelector("#empresaCNPJ").value;
         let telefone = document.querySelector("#empresaTelefone").value;
         let email = document.querySelector("#empresaEmail").value;
-        let endereco = document.querySelector("#empresaEndereco").checked;
+        let endereco = document.querySelector("#empresaEndereco").value;
         let cidade = document.querySelector("#empresaCidade").value;
         let estado = document.querySelector("#empresaEstado").value;
         let cep = document.querySelector("#empresaCEP").value;
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(telefone == "") {
             listaErros.push("empresaTelefone");
         }
-        if(email == 0) {
+        if(email == "") {
             listaErros.push("empresaEmail");
         }
         if(endereco == "") {
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(estado == "") {
             listaErros.push("empresaEstado");
         }
-        if(cep == 0) {
+        if(cep == "") {
             listaErros.push("empresaCEP");
         }
 

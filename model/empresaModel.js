@@ -110,7 +110,7 @@ class empresaModel {
         
 
         for(let i = 0; i < rows.length; i++) {
-            lista.push(new empresaModel(rows[i]['emp_id'], rows[i]['emp_nome'], rows[i]['emp_cnpj'], rows[i]['emp_telefone'], rows[i]['emp_email'], rows[i]['emp_endereco'], rows[i]['emp_cidade'], rows[i]['emp_estado'], rows[i]['emp_cep'] ))
+            lista.push(new empresaModel(rows[i]['id_empresa'], rows[i]['nome'], rows[i]['CNPJ'], rows[i]['telefone'], rows[i]['email'], rows[i]['endereco'], rows[i]['cidade'], rows[i]['estado'], rows[i]['CEP'] ))
         }
         return lista;
     }
@@ -118,7 +118,7 @@ class empresaModel {
     //função cadastrar
     async cadastrar() {
         if(this.#empresaId == 0){
-            let sql = "insert into empresas_parceiras (emp_nome ,emp_cnpj , emp_telefone, emp_email, emp_endereco, emp_cidade, emp_estado, emp_cep) values (?,?,?,?,?,?,?,?,?)";
+            let sql = "insert into empresas_parceiras (nome ,CNPJ , telefone, email, endereco, cidade, estado, CEP) values (?,?,?,?,?,?,?,?)";
         
             let valores =[
                 this.#empresaNome, this.#empresaCNPJ, this.#empresaTelefone, this.#empresaEmail, this.#empresaEndereco, this.#empresaCidade, this.#empresaEstado, this.#empresaCEP
@@ -129,7 +129,7 @@ class empresaModel {
             return result;
 
         }  else{
-            let sql = "update empresas_parceiras set emp_nome = ?, emp_cnpj = ?, emp_telefone = ?, emp_email = ?, emp_endereco = ?, emp_cidade = ?, emp_estado = ?, emp_cep = ?";
+            let sql = "update empresas_parceiras set nome = ?, CNPJ = ?, telefone = ?, email = ?, endereco = ?, cidade = ?, estado = ?, CEP = ?";
 
             let valores =[
                 this.#empresaNome, this.#empresaCNPJ, this.#empresaTelefone, this.#empresaEmail, this.#empresaEndereco, this.#empresaCidade, this.#empresaEstado, this.#empresaCEP
@@ -141,7 +141,7 @@ class empresaModel {
      }
 
      async obter(id) {
-        let sql = "select * from empresas_parceiras where usu_id = ?"
+        let sql = "select * from empresas_parceiras where id_empresa = ?"
 
         let valores = [id];
 
@@ -149,20 +149,20 @@ class empresaModel {
 
         if(rows.length > 0) {
             let row = rows[0];
-            return new empresaModel(row['emp_id'], row['emp_nome'] ,row['emp_cnpj'] , row['emp_telefone'], row['emp_email'], row['emp_endereco'], row['emp_cidade'], row['emp_estado'], row['emp_cep']);
+            return new empresaModel(row['id_empresa'], row['nome'] ,row['CNPJ'] , row['telefone'], row['email'], row['endereco'], row['cidade'], row['estado'], row['CEP']);
         }
         return null;
     }
 
-     async excluir(id) {
-        let sql = "delete from empresas_parceiras where emp_id = ?"
+    async excluir(id) {
+        let sql = "delete from empresas_parceiras where id_empresa = ?";
 
-        let valores = [id]
-
+        let valores = [id];
+        
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
         return result;
-     }
+    }
 
 }
 

@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let cnpj = document.querySelector("#empresaCNPJ").value;
         let telefone = document.querySelector("#empresaTelefone").value;
         let email = document.querySelector("#empresaEmail").value;
-        let endereco = document.querySelector("#empresaEndereco").checked;
+        let endereco = document.querySelector("#empresaEndereco").value;
         let cidade = document.querySelector("#empresaCidade").value;
         let estado = document.querySelector("#empresaEstado").value;
         let cep = document.querySelector("#empresaCEP").value;

@@ -1,4 +1,4 @@
-<script src="/js/usuarios/cadastrar.js"></script>
+<script src="/js/empresas/alterar.js"></script>
 
 <div class="container">
     <h1>Alteração de Empresas</h1>
@@ -11,58 +11,59 @@
     </div>
     <div>
         <div>
-            <input id="usuarioId" hidden value="<%= usuario.usuarioId %>">
-            <div class="form-group">
-                <label for="empresaNome" class="form-label">Nome</label>
-                <input value="<%= empresa.empresaNome =>" type="password" class="form-control" id="empresaNome" name="empresaNome">
+            <input id="empresaId" hidden value="<%= empresa.empresaId %>">
+            <div>
+                <div class="form-group">
+                    <label for="empresaNome" class="form-label">Nome</label>
+                    <input value="<%= empresa.empresaNome %>" type="password" class="form-control" id="empresaNome" name="empresaNome">
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="form-group">
-                <label for="empresaCNPJ" class="form-label">CNPJ</label>
-                <input value="<%= empresa.empresaCNPJ =>" type="text" class="form-control" id="empresaCNPJ" name="empresaCNPJ">
+            <div>
+                <div class="form-group">
+                    <label for="empresaCNPJ" class="form-label">CNPJ</label>
+                    <input value="<%= empresa.empresaCNPJ %>" type="text" class="form-control" id="empresaCNPJ" name="empresaCNPJ">
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="form-group">
-                <label for="empresaTelefone" class="form-label">Telefone</label>
-                <input value="<%= empresa.empresaTelefone =>" type="text" class="form-control" id="empresaTelefone" name="empresaTelefone">
+            <div>
+                <div class="form-group">
+                    <label for="empresaTelefone" class="form-label">Telefone</label>
+                    <input value="<%= empresa.empresaTelefone %>" type="text" class="form-control" id="empresaTelefone" name="empresaTelefone">
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="form-group">
-                <label for="empresaEmail" class="form-label">Email</label>
-                <input value="<%= empresa.empresaEmail =>" type="text" class="form-control" id="empresaEmail" name="empresaEmail">
+            <div>
+                <div class="form-group">
+                    <label for="empresaEmail" class="form-label">Email</label>
+                    <input value="<%= empresa.empresaEmail %>" type="text" class="form-control" id="empresaEmail" name="empresaEmail">
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="form-group">
-                <label for="empresaEndereco" class="form-label">Endereco</label>
-                <input value="<%= empresa.empresaEndereco =>" type="text" class="form-control" id="empresaEndereco" name="empresaEndereco">
+            <div>
+                <div class="form-group">
+                    <label for="empresaEndereco" class="form-label">Endereco</label>
+                    <input value="<%= empresa.empresaEndereco %>" type="text" class="form-control" id="empresaEndereco" name="empresaEndereco">
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="form-group">
-                <label for="empresaCidade" class="form-label">Cidade</label>
-                <input value="<%= empresa.empresaCidade =>" type="text" class="form-control" id="empresaCidade" name="empresaCidade">
+            <div>
+                <div class="form-group">
+                    <label for="empresaCidade" class="form-label">Cidade</label>
+                    <input value="<%= empresa.empresaCidade %>" type="text" class="form-control" id="empresaCidade" name="empresaCidade">
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="form-group">
-                <label for="empresaEstado" class="form-label">Estado</label>
-                <input value="<%= empresa.empresaEstado =>" type="text" class="form-control" id="empresaEstado" name="empresaEstado">
+            <div>
+                <div class="form-group">
+                    <label for="empresaEstado" class="form-label">Estado</label>
+                    <input value="<%= empresa.empresaEstado %>" type="text" class="form-control" id="empresaEstado" name="empresaEstado">
+                </div>
             </div>
-        </div>
-        <div>
-            <div class="form-group">
-                <label for="empresaCEP" class="form-label">CEP</label>
-                <input value="<%= empresa.empresaCEP =>" type="text" class="form-control" id="empresaCEP" name="empresaCEP">
+            <div>
+                <div class="form-group">
+                    <label for="empresaCEP" class="form-label">CEP</label>
+                    <input value="<%= empresa.empresaCEP %>" type="text" class="form-control" id="empresaCEP" name="empresaCEP">
+                </div>
             </div>
-        </div>
 
         <div>
             <button class="btn btn-primary" id="btnAlterar" type="button">Alterar</button>
-            <a class="btn btn-secondary" href="/usuarios">Voltar</a>
+            <a class="btn btn-secondary" href="/empresas">Voltar</a>
         </div>
     </div>
 </div>

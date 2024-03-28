@@ -1,6 +1,7 @@
 const empresaModel = require("../model/empresaModel");
 
 class empresaController {
+    
     async listagemView (req, resp) {
         let empresa = new empresaModel();
         let listaEmpresa = await empresa.listar()
@@ -49,7 +50,6 @@ class empresaController {
     }
 
     async alterarView(req, res) {
-        console.log(req.params);
         let empresa = new empresaModel();
         empresa = await empresa.obter(req.params.id);
         res.render('empresas/alterar', {empresa: empresa})

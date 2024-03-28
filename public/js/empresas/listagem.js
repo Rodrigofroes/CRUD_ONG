@@ -1,4 +1,4 @@
-document.addEventListener("DomContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
 
     let btns = document.querySelectorAll(".btnExclusao");
 
@@ -10,7 +10,7 @@ document.addEventListener("DomContentLoaded", function() {
         let id = this.dataset.codigoexclusao;
 
         if(id != null) {
-            if(confirm("Tem certeza que deseja excluir essa Empresa?")) {
+            if(confirm("Tem certeza que deseja excluir essa empresa?")) {
                 let obj = {
                     id: id
                 }
@@ -41,5 +41,6 @@ document.addEventListener("DomContentLoaded", function() {
             alert("Nenhum ID encontrado para exclusão");
         }
     }
+
 
 })
