@@ -78,7 +78,7 @@ class voluntarioModel {
 
     async cadastrar(){
         if(this.#voluntarioId == 0){
-            let sql = "insert teste (nome, email, telefone, data_nasciment, endereco, CEP) values (?,?,?,?,?,?)";
+            let sql = "insert voluntario (nome, email, telefone, data_nasciment, endereco, CEP) values (?,?,?,?,?,?)";
             let valores = [this.#voluntarioNome, this.#voluntarioEmail, this.#voluntarioTelefone, this.#voluntarioNasc, this.#voluntarioEndereco, this.#voluntarioCep];
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
     
@@ -87,7 +87,7 @@ class voluntarioModel {
     }
 
     async listar() {
-        let sql = "select * from teste";
+        let sql = "select * from voluntario";
     
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
@@ -100,7 +100,7 @@ class voluntarioModel {
 
 
     async obter(id) {
-        let sql = "select * from teste where id = ?";
+        let sql = "select * from voluntario where id = ?";
 
         let valores = [id];
 
@@ -115,7 +115,7 @@ class voluntarioModel {
     }
     
     async exluir(id){
-        let sql = "DELETE FROM teste WHERE id = ?"
+        let sql = "DELETE FROM voluntario WHERE id = ?"
         let valores = [id];
 
         let result = await banco.ExecutaComandoNonQuery(sql, valores);

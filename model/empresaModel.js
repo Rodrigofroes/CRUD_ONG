@@ -102,7 +102,7 @@ class empresaModel {
     //função listar tudo
     async listar() {
 
-        let sql = "select * from tb_empresa"
+        let sql = "select * from empresas_parceiras"
         let lista = [];
  
 
@@ -118,7 +118,7 @@ class empresaModel {
     //função cadastrar
     async cadastrar() {
         if(this.#empresaId == 0){
-            let sql = "insert into tb_empresa (emp_nome ,emp_cnpj , emp_telefone, emp_email, emp_endereco, emp_cidade, emp_estado, emp_cep) values (?,?,?,?,?,?,?,?,?)";
+            let sql = "insert into empresas_parceiras (emp_nome ,emp_cnpj , emp_telefone, emp_email, emp_endereco, emp_cidade, emp_estado, emp_cep) values (?,?,?,?,?,?,?,?,?)";
         
             let valores =[
                 this.#empresaNome, this.#empresaCNPJ, this.#empresaTelefone, this.#empresaEmail, this.#empresaEndereco, this.#empresaCidade, this.#empresaEstado, this.#empresaCEP
@@ -129,7 +129,7 @@ class empresaModel {
             return result;
 
         }  else{
-            let sql = "update tb_empresa set emp_nome = ?, emp_cnpj = ?, emp_telefone = ?, emp_email = ?, emp_endereco = ?, emp_cidade = ?, emp_estado = ?, emp_cep = ?";
+            let sql = "update empresas_parceiras set emp_nome = ?, emp_cnpj = ?, emp_telefone = ?, emp_email = ?, emp_endereco = ?, emp_cidade = ?, emp_estado = ?, emp_cep = ?";
 
             let valores =[
                 this.#empresaNome, this.#empresaCNPJ, this.#empresaTelefone, this.#empresaEmail, this.#empresaEndereco, this.#empresaCidade, this.#empresaEstado, this.#empresaCEP
@@ -141,7 +141,7 @@ class empresaModel {
      }
 
      async obter(id) {
-        let sql = "select * from tb_empresa where usu_id = ?"
+        let sql = "select * from empresas_parceiras where usu_id = ?"
 
         let valores = [id];
 
@@ -155,7 +155,7 @@ class empresaModel {
     }
 
      async excluir(id) {
-        let sql = "delete from tb_empresa where emp_id = ?"
+        let sql = "delete from empresas_parceiras where emp_id = ?"
 
         let valores = [id]
 
