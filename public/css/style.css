@@ -49,6 +49,7 @@ body {
     transition: all .25s ease-in-out;
     background: linear-gradient(#c722d6af, #04eeffc2);
     display: flex;
+    
     flex-direction: column;
 }
 
