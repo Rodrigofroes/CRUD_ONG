@@ -6,7 +6,7 @@ class voluntariosControllers{
         res.render('voluntario/cadastroVoluntarios');
     }
 
-    alterarVoluntarios(req, res){
+    async alterarVoluntarios(req, res){
         res.render('voluntario/alterarVoluntarios');
     }
 

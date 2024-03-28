@@ -108,13 +108,19 @@ class voluntarioModel {
 
         if(rows.length > 0) {
             let row = rows[0];
-            return new UsuarioModel(row["id"], row["nome"], row["email"], row["endereco"], row["data_nasciment"], row["cep"]);
+            return new voluntarioModel(row["id"],row["nome"], row["email"], row["endereco"], row["data_nasciment"],  row["cep"],  row["telefone"]);
         }
 
         return null;
     }
     
+    async exluir(id){
+        let sql = "DELETE FROM teste WHERE id = ?"
+        let valores = [id];
 
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+        return result;
+    }
 }
 
 module.exports = voluntarioModel;

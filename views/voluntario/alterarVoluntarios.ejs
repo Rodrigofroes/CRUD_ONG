@@ -7,10 +7,9 @@
                 <label for="inputNome">Nome Completo:</label>
                 <input
                 type="text"
-                value="<% lista.voluntarioNome %>"
+                value="<%= usuario.voluntarioNome %>"
                 class="form-control"
                 id="inputNome"
-                placeholder="Ex: Rodrigo oliveira"
                 />
             </div>
             <div class="form-floating">
@@ -19,7 +18,7 @@
                 type="email"
                 class="form-control"
                 id="inputEmail"
-                placeholder="name@example.com"
+                value="<%= usuario.voluntarioEmail %>"
                 />
             </div>
         </div>
@@ -30,7 +29,7 @@
                 type="text"
                 class="form-control"
                 id="inputNasc"
-                placeholder="14/03/2003"
+                value="<%= usuario.voluntarioNasc %>"
                 />
             </div>
             <div class="form-floating">
@@ -39,7 +38,7 @@
                 type="text"
                 class="form-control"
                 id="inputEnd"
-                placeholder="Rua teste, n°72"
+                value="<%= usuario.voluntarioEndereco %>"
                 />
             </div>
         </div>
@@ -50,7 +49,7 @@
                 type="text"
                 class="form-control"
                 id="inputCep"
-                placeholder="19160-000"
+                value="<%= usuario.voluntarioCep %>"
                 />
             </div>
             <div class="form-floating mb-3">
@@ -59,9 +58,9 @@
                 type="text"
                 class="form-control"
                 id="inputTel"
-                placeholder="19160-000"
+                value="<%= usuario.voluntarioTelefone %>"
                 />
             </div>
         </div>
-        <button class="btn btn-primary" onclick="cadastrar()">Salvar</button>
+        <button class="btn btn-primary" onclick="alterarValores(<%= usuario.voluntarioId %>)">Salvar</button>
 </body>

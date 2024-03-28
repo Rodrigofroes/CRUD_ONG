@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<script>
+    function excluir(id){
+        console.log(id);
+        let obj = {
+            id: id
+        }
+
+        fetch('/voluntarios/excluir', {
+            method: 'POST',
+            body: JSON.stringify(obj),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(r=> {
+            return r.json();
+        }).then(r=> {
+            if(r.ok) {
+                window.location.reload();
+            }   
+            else {
+                alert(r.msg);
+            }
+        })
+    }
+</script>
 <body>
     <div class="d-flex flex-column">
         <h6>Cadastrar novo Voluntario:</h6>
@@ -31,8 +49,8 @@
                         <td><%= lista[i].voluntarioTelefone %></td>
                         <td><%= lista[i].voluntarioNasc %></td>
                         <td>
-                            <a class="btn btn-primary" href="/voluntarios/alterar/:<% lista[i].voluntarioId %>"><i class="fas fa-pen">editar</i></a>
-                            <button class="btn btn-danger btnExclusao"><i class="fas fa-trash">excluir</i></button>
+                            <a class="btn btn-primary" href="/voluntarios/alterar/<%= lista[i].voluntarioId %>"><i class="fas fa-pen"></i></a>
+                            <button class="btn btn-danger btnExclusao" onclick="excluir(<%= lista[i].voluntarioId %>)" ><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 <% } %>
@@ -40,4 +58,3 @@
          </table>
     </div>
 </body>
-</html>
