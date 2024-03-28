@@ -30,7 +30,7 @@ function alterarValores(id) {
         return r.json();
     }).then(r=> {
         if(r.ok) {
-            window.location.href="/listagem";
+            window.location.href="/";
         }   
         else {
             alert(r.msg);
