@@ -1,0 +1,61 @@
+<script src="/js/doacoes/cadastrar.js"></script>
+
+<div class="container">
+    <h1>Cadastro de Doações</h1>
+    <div>
+        <% if (typeof msg !="undefined" ) { %>
+            <span>
+                <%= msg %>
+            </span>
+            <% } %>
+    </div>
+    <div>
+        <div>
+            <div class="form-group">
+                <label for="doacaoValor" class="form-label">Valor</label>
+                <input type="text" class="form-control" id="doacaoValor" name="doacaoValor">
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group">
+                <label for="doacaoData" class="form-label">Data da Doação</label>
+                <input type="date" class="form-control" id="doacaoData" name="doacaoData">
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group">
+                <label for="doacaoPag" class="form-label">Forma de Pagamento</label>
+                <input type="text" class="form-control" id="doacaoPag" name="doacaoPag">
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group">
+                <label for="doacaoDoadorId" class="form-label">Doador Id</label>
+                <input type="text" class="form-control" id="doacaoDoadorId" name="doacaoDoadorId">
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group">
+                <label for="doacaoProjetoId" class="form-label">Projeto Id</label>
+                <input type="text" class="form-control" id="doacaoProjetoId" name="doacaoProjetoId">
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group">
+                <label for="doacaoCaixaId" class="form-label">Caixa Id</label>
+                <input type="text" class="form-control" id="doacaoCaixaId" name="doacaoCaixaId">
+            </div>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" id="btnCadastrar" type="button">Cadastrar</button>
+            <a class="btn btn-secondary" href="/doacoes">Voltar</a>
+        </div>
+    </div>
+</div>
+</div>
