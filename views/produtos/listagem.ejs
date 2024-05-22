@@ -12,7 +12,7 @@
 <hr>
 <div>
     <table class="table table-striped">
-        <thead>
+        <thead> 
             <th>Id</th>
             <th>Nome</th>
             <th>Descrição</th>
@@ -41,13 +41,18 @@
                     </td>
                     <td>
                         <button data-produtoid="<%= lista[i].produtoId %>" class="btn btn-success btnAddCarrinho"><i class="fas fa-cart-plus"></i></button>
-                        <a href="/produtos/alterar/<%= lista[i].produtoId %>" class="btn btn-primary"><i
-                                class="fas fa-pen"></i></a>
-                        <button data-codigoexclusao="<%= lista[i].produtoId %>" class="btn btn-danger btnExclusao"><i
-                                class="fas fa-trash"></i></button>
+
+                        <a href="/produtos/alterar/<%= lista[i].produtoId %>" class="btn btn-primary">
+                            <i class="fas fa-pen"></i>
+                        </a>
+
+                        <button data-codigoexclusao="<%= lista[i].produtoId %>" class="btn btn-danger btnExclusao">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
                 <% } %>
+                
         </tbody>
     </table>
 </div>

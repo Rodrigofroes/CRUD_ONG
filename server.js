@@ -34,7 +34,7 @@ app.use('/eventos', eventoRoute);
 app.use('/patrimonios', patrimonioRoute);
 
 // Inicia o servidor na porta 5000
-app.listen(5000, function() {
+app.listen(5001, function() {
   console.log("Servidor web iniciado");
 });
 

@@ -125,7 +125,7 @@ class produtoModel {
     }
 
     async buscarProduto(id){
-        let sql = "select * from produto";
+        let sql = "select * from produto where id_produto = ?;";
         let valores = [id];
         var rows = await banco.ExecutaComando(sql, valores);
 
@@ -138,6 +138,14 @@ class produtoModel {
         }
 
         return produto;
+    }
+
+    toJSON() {
+        return {
+            "produtoId": this.#produtoId,
+            "produtoNome": this.#produtoNome,
+            "produtoPreco": this.#produtoPreco,
+        }
     }
 }
 
