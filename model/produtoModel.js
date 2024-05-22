@@ -123,6 +123,22 @@ class produtoModel {
 
         return result;
     }
+
+    async buscarProduto(id){
+        let sql = "select * from produto";
+        let valores = [id];
+        var rows = await banco.ExecutaComando(sql, valores);
+
+        let produto = null;
+
+        if(rows.length > 0){
+            var row = rows[0];
+            
+            produto = new produtoModel(row['id_produto'], row['nome'], row['descricao'], row['preco'], row['quantidade']);
+        }
+
+        return produto;
+    }
 }
 
 module.exports = produtoModel;
