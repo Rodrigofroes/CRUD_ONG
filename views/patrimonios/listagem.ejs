@@ -1,0 +1,40 @@
+<script src="/js/patrimonios/listagem.js"></script>
+
+<h1 class="text-secondary">Patrimonios cadastradas</h1>
+
+<a class="btn btn-primary" style="max-width: 200px;" href="patrimonios/cadastrar">Novo patrimonio</a>
+<button data-bs-toggle="modal" data-bs-target="#modalCarrinho" class="btn btn-primary" type="button">
+    <i class="fas fa-cart-plus"></i>
+    <span id="contadorCarrinho" class="badge bg-info text-white ms-1 rounded-pill">0</span>
+</button>
+
+<hr>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Projeto Id</th>
+                <th>Opções</th>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < lista.length; i++)  { %>
+                    <tr>
+
+                        <td><%= lista[i].patrimonioId %></td>
+                        <td><%= lista[i].patrimonioNome %></td>
+                        <td><%= lista[i].patrimonioDescricao %></td>
+                        <td><%= lista[i].patrimonioQuantidade %></td>
+                        <td><%= lista[i].projetoId %></td>
+                        <td>
+                            <button data-produtoid="<%= lista[i].produtoId %>" class="btn btn-success btnAddCarrinho"><i class="fas fa-cart-plus"></i></button>
+                            <a href="/patrimonios/alterar/<%= lista[i].patrimonioId %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                            <button data-codigoexclusao="<%= lista[i].patrimonioId %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>

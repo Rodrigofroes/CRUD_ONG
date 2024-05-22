@@ -10,12 +10,12 @@ document.addEventListener("DOMContentLoaded", function() {
         let id = this.dataset.codigoexclusao;
 
         if(id != null) {
-            if(confirm("Tem certeza que deseja excluir esse voluntario?")) {
+            if(confirm("Tem certeza que deseja excluir esse evento?")) {
                 let obj = {
                     id: id
                 }
 
-                fetch('/voluntarios/excluir', {
+                fetch('eventos/excluir', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -44,4 +44,3 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 })
-    

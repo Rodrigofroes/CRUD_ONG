@@ -1,7 +1,7 @@
 const express = require('express');
-const empresaControllers = require('../controllers/empresaController');
+const produtoControllers = require('../controllers/produtoController');
 
-let control = new empresaControllers();
+let control = new produtoControllers();
 
 const router = express.Router();
 router.get('/',control.listagemView);
@@ -10,5 +10,6 @@ router.post('/cadastrar',control.cadastrar);
 router.get('/alterar/:id', control.alterarView);
 router.post("/alterar", control.alterar);
 router.post("/excluir", control.excluir);
+router.get("/obter/:produto", control.obter)
 
 module.exports = router;

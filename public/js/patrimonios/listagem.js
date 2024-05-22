@@ -10,12 +10,12 @@ document.addEventListener("DOMContentLoaded", function() {
         let id = this.dataset.codigoexclusao;
 
         if(id != null) {
-            if(confirm("Tem certeza que deseja excluir essa empresa?")) {
+            if(confirm("Tem certeza que deseja excluir esse patrimonio?")) {
                 let obj = {
                     id: id
                 }
 
-                fetch('/empresas/excluir', {
+                fetch('/patrimonios/excluir', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

@@ -1,0 +1,111 @@
+const Database = require("../utils/database");
+
+const banco = new Database();
+
+class eventoModel {
+    #eventoId;
+    #eventoNome;
+    #eventoDescricao;
+    #eventoDataInic;
+    #eventoDataFim;
+    #eventoLocal;
+    #projetoId;
+
+    constructor(eventoId, eventoNome, eventoDescricao, eventoDataInic, eventoDataFim, eventoLocal, projetoId) {
+        this.#eventoId = eventoId;
+        this.#eventoNome = eventoNome;
+        this.#eventoDescricao = eventoDescricao;
+        this.#eventoDataInic = eventoDataInic;
+        this.#eventoDataFim = eventoDataFim;
+        this.#eventoLocal = eventoLocal;
+        this.#projetoId = projetoId;
+    }
+
+    get eventoId() { return this.#eventoId; }
+    set eventoId(novoeventoId) { this.#eventoId = novoeventoId; }
+
+    get eventoNome() { return this.#eventoNome; }
+    set eventoNome(novoeventoNome) { this.#eventoNome = novoeventoNome; }
+
+    get eventoDescricao() { return this.#eventoDescricao; }
+    set eventoDescricao(novoeventoDescricao) { this.#eventoDescricao = novoeventoDescricao; }
+
+    get eventoDataInic() { return this.#eventoDataInic; }
+    set eventoDataInic(novoeventoDataInic) { this.#eventoDataInic = novoeventoDataInic; }
+
+    get eventoDataFim() { return this.#eventoDataFim; }
+    set eventoDataFim(novoeventoDataFim) { this.#eventoDataFim = novoeventoDataFim; }
+
+    get eventoLocal() { return this.#eventoLocal; }
+    set eventoLocal(novoeventoLocal) { this.#eventoLocal = novoeventoLocal; }
+
+    get projetoId() { return this.#projetoId; }
+    set projetoId(novoprojetoId) { this.#projetoId = novoprojetoId; }
+
+    //função listar tudo
+    async listar() {
+
+        let sql = "select * from evento"
+        let lista = [];
+
+
+        let rows = await banco.ExecutaComando(sql)
+
+
+        for (let i = 0; i < rows.length; i++) {
+            lista.push(new eventoModel(rows[i]['id_evento'], rows[i]['nome'], rows[i]['descricao'], rows[i]['data_inicio'], rows[i]['data_fim'], rows[i]['local'], rows[i]['projeto_id']))
+        }
+        return lista;
+    }
+
+    async cadastrar() {
+        if (this.#eventoId == 0) {
+            let sql = "insert into evento (nome ,descricao , data_inicio, data_fim, local, projeto_id) values (?,?,?,?,?,?)";
+
+            let valores = [
+                this.#eventoNome, this.#eventoDescricao, this.#eventoDataInic, this.#eventoDataFim, this.#eventoLocal, this.#projetoId,
+            ]
+
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+            return result;
+
+        } else {
+            let sql = "update evento set nome = ?, descricao = ?, data_inicio = ?, data_fim = ?, local = ?, projeto_id = ?";
+
+            let valores = [
+                this.#eventoNome, this.#eventoDescricao, this.#eventoDataInic, this.#eventoDataFim, this.#eventoLocal, this.#projetoId,
+            ]
+
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+            return result;
+        }
+    }
+
+    async obter(id) {
+        let sql = "select * from evento where id_evento = ?"
+
+        let valores = [id];
+
+        let rows = await banco.ExecutaComando(sql, valores);
+
+        if (rows.length > 0) {
+            let row = rows[0];
+            return new eventoModel(row['id_evento'], row['nome'], row['descricao'], row['data_inicio'], row['data_fim'], row['local'], row['projeto_id']);
+        }
+        return null;
+    }
+
+    async excluir(id) {
+        let sql = "delete from evento where id_evento = ?";
+
+        let valores = [id];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
+    }
+
+}
+
+module.exports = eventoModel;

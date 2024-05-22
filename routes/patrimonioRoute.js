@@ -1,7 +1,7 @@
 const express = require('express');
-const voluntarioController = require('../controllers/voluntarioController');
+const patrimonioControllers = require('../controllers/patrimonioController');
 
-let control = new voluntarioController();
+let control = new patrimonioControllers();
 
 const router = express.Router();
 router.get('/',control.listagemView);
