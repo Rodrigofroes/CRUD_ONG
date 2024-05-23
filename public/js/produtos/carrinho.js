@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(r=> {
                 alert(r.msg);
                 localStorage.removeItem("carrinho");
-                window.location.href = "/produtos";
+                window.location.reload();
             })
 
         }
@@ -199,6 +199,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         localStorage.setItem("carrinho", JSON.stringify(listaCarrinho));
 
+        let carrinho = localStorage.getItem("carrinho");
+
+        //incrementar contador com a nova lista;
+        carrinho = JSON.parse(localStorage.getItem("carrinho"));
+        document.getElementById("contadorCarrinho").innerText = carrinho.length;
+
         carregarCarrinho();
     }
     
@@ -226,6 +232,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
         // Atualiza o localStorage
         localStorage.setItem("carrinho", JSON.stringify(carrinho));
+                
+        //incrementar contador com a nova lista;
+        carrinho = JSON.parse(localStorage.getItem("carrinho"));
+        document.getElementById("contadorCarrinho").innerText = carrinho.length;
     }
     
     function adicionarAoCarrinho() {
@@ -244,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         that.innerHTML = `<i class="fas fa-cart-plus"></i>`;
                     }, 5000);
                 }
-                window.location.href = "/produtos";
+
             })
     }
     // Fim - Adicionar LocalStorage Carrinho

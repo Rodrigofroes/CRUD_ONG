@@ -125,9 +125,13 @@ class produtoModel {
     }
 
     async excluir(id) {
+
+        let sqlForeign = "delete from tb_pedidoitens where id_produto = '1'; ";
+
         let sql = "delete from produto where id_produto = ?";
 
         let valores = [id];
+        await banco.ExecutaComandoNonQuery(sqlForeign, valores);
         
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
