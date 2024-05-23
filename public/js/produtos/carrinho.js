@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 return r.json();
             })
             .then(r=> {
-                console.log(r);
+                alert(r.msg);
+                localStorage.removeItem("carrinho");
+                window.location.href = "/produtos";
             })
 
         }
