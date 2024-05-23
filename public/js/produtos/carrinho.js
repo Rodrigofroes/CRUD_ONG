@@ -244,7 +244,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         that.innerHTML = `<i class="fas fa-cart-plus"></i>`;
                     }, 5000);
                 }
-            });
+                window.location.href = "/produtos";
+            })
     }
     // Fim - Adicionar LocalStorage Carrinho
 })
