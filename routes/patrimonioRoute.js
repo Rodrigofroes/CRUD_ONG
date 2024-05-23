@@ -10,5 +10,6 @@ router.post('/cadastrar',control.cadastrar);
 router.get('/alterar/:id', control.alterarView);
 router.post("/alterar", control.alterar);
 router.post("/excluir", control.excluir);
+router.get("/obter/:patrimonio", control.obter);
 
 module.exports = router;

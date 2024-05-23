@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let projeto = document.querySelector("#patrimonioProjeto").value;
 
         let listaErros = [];
-        if(nome == "" || !/^[a-zA-Z\s]*$/.test(nome)) {
+        if(nome == "") { 
             listaErros.push("patrimonioNome");
         }
         if(descricao == "") {

@@ -5,6 +5,7 @@ const expressEjsLayout = require('express-ejs-layouts');
 const homeRoute = require('./routes/homeRoute');
 const produtoRoute = require('./routes/produtoRoute');
 const pedidoRoute = require("./routes/pedidoRoute");
+const pedidoPatrimonioRoute = require("./routes/pedidoPatrimonioRoute");
 const eventoRoute = require('./routes/eventoRoute');
 const patrimonioRoute = require('./routes/patrimonioRoute');
 // Cria uma instância do aplicativo Express
@@ -32,6 +33,7 @@ app.use(expressEjsLayout);
 app.use('/', homeRoute);
 app.use('/produtos', produtoRoute);
 app.use("/pedidos", pedidoRoute);
+app.use("/pedidosPatrimonio", pedidoPatrimonioRoute);
 app.use('/eventos', eventoRoute);
 app.use('/patrimonios', patrimonioRoute);
 

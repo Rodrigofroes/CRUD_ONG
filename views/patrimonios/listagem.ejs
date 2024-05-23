@@ -1,40 +1,96 @@
 <script src="/js/patrimonios/listagem.js"></script>
+<script src="/js/patrimonios/carrinho.js"></script>
 
 <h1 class="text-secondary">Patrimonios cadastradas</h1>
 
 <a class="btn btn-primary" style="max-width: 200px;" href="patrimonios/cadastrar">Novo patrimonio</a>
 <button data-bs-toggle="modal" data-bs-target="#modalCarrinho" class="btn btn-primary" type="button">
-    <i class="fas fa-cart-plus"></i>
+    <i class="fas fa-shopping-cart"></i>
     <span id="contadorCarrinho" class="badge bg-info text-white ms-1 rounded-pill">0</span>
 </button>
 
 <hr>
-    <div>
-        <table class="table table-striped">
-            <thead>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Quantidade</th>
-                <th>Projeto Id</th>
-                <th>Opções</th>
-            </thead>
-            <tbody>
-                <% for (let i = 0; i < lista.length; i++)  { %>
-                    <tr>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Projeto Id</th>
+            <th>Opções</th>
+        </thead>
+        <tbody>
+            <% for (let i=0; i < lista.length; i++) { %>
+                <tr>
 
-                        <td><%= lista[i].patrimonioId %></td>
-                        <td><%= lista[i].patrimonioNome %></td>
-                        <td><%= lista[i].patrimonioDescricao %></td>
-                        <td><%= lista[i].patrimonioQuantidade %></td>
-                        <td><%= lista[i].projetoId %></td>
-                        <td>
-                            <button data-produtoid="<%= lista[i].produtoId %>" class="btn btn-success btnAddCarrinho"><i class="fas fa-cart-plus"></i></button>
-                            <a href="/patrimonios/alterar/<%= lista[i].patrimonioId %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                            <button data-codigoexclusao="<%= lista[i].patrimonioId %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
-                        </td>
-                    </tr>
+                    <td>
+                        <%= lista[i].patrimonioId %>
+                    </td>
+                    <td>
+                        <%= lista[i].patrimonioNome %>
+                    </td>
+                    <td>
+                        <%= lista[i].patrimonioDescricao %>
+                    </td>
+                    <td>
+                        <%= lista[i].patrimonioQuantidade %>
+                    </td>
+                    <td>
+                        <%= lista[i].projetoId %>
+                    </td>
+                    <td>
+                        <button data-patrimonioid="<%= lista[i].patrimonioId %>" class="btn btn-success btnAddCarrinho">
+                            <i class="fas fa-cart-plus"></i>
+                        </button>
+
+                        <a href="/patrimonios/alterar/<%= lista[i].patrimonioId %>" class="btn btn-primary">
+                            <i class="fas fa-pen"></i>
+                        </a>
+
+                        <button data-codigoexclusao="<%= lista[i].patrimonioId %>" class="btn btn-danger btnExclusao">
+                            <i class="fas fa-trash"></i>
+                        </button>
+
+                    </td>
+                </tr>
                 <% } %>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modalCarrinho" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi-cart-fill me-1"></i> Carrinho</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="msgCarrinhoVazio" style="text-align: center;display: none;">
+                    O carrinho está vazio!
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped" id="tabelaCarrinho">
+                        <thead>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Ações</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="valorTotal" style="text-align: end;">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" id="btnConfirmarPedido" class="btn btn-success">Confirmar pedido</button>
+            </div>
+        </div>
     </div>
+</div>

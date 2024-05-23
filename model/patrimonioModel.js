@@ -48,6 +48,16 @@ class patrimonioModel {
         return lista;
     }
 
+    async validarEstoque(patrimonioId, quantidade) {
+
+        let sql = "select * from patrimonio where id_patrimonio = ? and quantidade >= ?";
+        let valores = [patrimonioId, quantidade];
+
+        let rows = await banco.ExecutaComando(sql, valores);
+        
+        return rows.length > 0;
+    }
+
     async cadastrar() {
         if (this.#patrimonioId == 0) {
             let sql = "insert into patrimonio (nome, descricao, quantidade, projeto_id) values (?,?,?,?)";
@@ -87,13 +97,42 @@ class patrimonioModel {
     }
 
     async excluir(id) {
+
+        let sqlForeign = "delete from tb_pedidoitenspatrimonio where id_patrimonio = ?; ";
+
         let sql = "delete from patrimonio where id_patrimonio = ?";
 
         let valores = [id];
-
+        await banco.ExecutaComandoNonQuery(sqlForeign, valores);
+        
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
         return result;
+    }
+
+
+    async buscarPatrimonio(id){
+        let sql = "select * from patrimonio where id_patrimonio = ?;";
+        let valores = [id];
+        var rows = await banco.ExecutaComando(sql, valores);
+
+        let patrimonio = null;
+
+        if(rows.length > 0){
+            var row = rows[0];
+            
+            patrimonio = new patrimonioModel(row['id_patrimonio'], row['nome'], row['descricao'], row['quantidade'], row['projeto_id']);
+        }
+
+        return patrimonio;
+    }
+
+    toJSON() {
+        return {
+            "patrimonioId": this.#patrimonioId,
+            "patrimonioNome": this.#patrimonioNome,
+            "patrimonioQuantidade": this.#patrimonioQuantidade,
+        }
     }
 
 }

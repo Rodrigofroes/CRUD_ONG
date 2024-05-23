@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let quantidade = document.querySelector("#produtoQuant").value;
 
         let listaErros = [];
-        if(nome == "" || !/^[a-zA-Z\s]*$/.test(nome)) {
+        if(nome == "") {
             listaErros.push("produtoNome");
         }
         if(descricao == "") {

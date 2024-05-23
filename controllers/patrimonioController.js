@@ -98,6 +98,14 @@ class patrimonioController {
             res.send({ok: false, msg: "O id para exclusão não foi enviado"})
         }
     }
+
+    async obter(req, res) {
+        let id = req.params.patrimonio;
+        let patrimonio = new patrimonioModel();
+        patrimonio = await patrimonio.buscarPatrimonio(id);
+
+        res.send({patrimonioEncontrado: patrimonio});
+    }
 }
 
 module.exports = patrimonioController
