@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", function() {
     //Carrinho Botão da tabela
     var btnAddCarrinho = document.querySelectorAll(".btnAddCarrinho");
 
+    //Modal confirmar Pedido
+    var btnConfirmar = document.querySelector("#btnConfirmarPedido");
+    btnConfirmar.addEventListener("click", gravarPedido);
+
     let carrinho = [];
 
     for(let i = 0; i < btnAddCarrinho.length; i++) {
@@ -21,7 +25,32 @@ document.addEventListener("DOMContentLoaded", function() {
     modalCarrinho.addEventListener('show.bs.modal', function (event) {
         carregarCarrinho();
     })
+    
+    function gravarPedido() {
 
+        let listaCarrinho = JSON.parse(localStorage.getItem("carrinho"));
+        if(listaCarrinho.length > 0) {
+
+            fetch("/pedidos/gravar", {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify(listaCarrinho)
+            })
+            .then(r=> {
+                return r.json();
+            })
+            .then(r=> {
+                console.log(r);
+            })
+
+        }
+        else{
+            alert("O carrinho está vazio!");
+        }
+    }
+    
     function carregarCarrinho() {
 
         let html = "";
@@ -70,6 +99,107 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }   
 
+    function iniciarEventos() {
+
+        let inputQtde = document.querySelectorAll(".inputQtde");
+
+        let btnIncrementar = document.querySelectorAll(".incrementar");
+
+        let btnDecrementar = document.querySelectorAll(".decrementar");
+
+        let btnRemover = document.querySelectorAll(".remover");
+
+        for(let i = 0; i < inputQtde.length; i++) {
+            inputQtde[i].addEventListener("change", alterarValor);
+            btnIncrementar[i].addEventListener("click", incrementar);
+            btnDecrementar[i].addEventListener("click", decrementar);
+            btnRemover[i].addEventListener("click", remover);
+        }
+
+    }
+
+    function incrementar() {
+        let produto = this.dataset.produto;
+        let valor = document.querySelector(`input[data-produto='${produto}']`).value;
+        valor++;
+        if(valor > 0 && valor < 999) {
+
+            let listaCarrinho = JSON.parse(localStorage.getItem("carrinho"));
+    
+            for(let i = 0; i<listaCarrinho.length; i++) {
+                if(produto == listaCarrinho[i].produtoId) {
+                    listaCarrinho[i].quantidade = valor;
+                }
+            }
+    
+            localStorage.setItem("carrinho", JSON.stringify(listaCarrinho));
+    
+            carregarCarrinho();
+        }
+        else {
+            alert("Valor incorreto, selecione entre 0 e 999");
+        }
+    }
+
+    function decrementar() {
+        let produto = this.dataset.produto;
+        let valor = document.querySelector(`input[data-produto='${produto}']`).value;
+        valor--;
+        if(valor > 0 && valor < 999) {
+
+            let listaCarrinho = JSON.parse(localStorage.getItem("carrinho"));
+    
+            for(let i = 0; i<listaCarrinho.length; i++) {
+                if(produto == listaCarrinho[i].produtoId) {
+                    listaCarrinho[i].quantidade = valor;
+                }
+            }
+    
+            localStorage.setItem("carrinho", JSON.stringify(listaCarrinho));
+    
+            carregarCarrinho();
+        }
+        else {
+            alert("Valor incorreto, selecione entre 0 e 999");
+        }
+    }
+
+    function alterarValor() {
+
+
+        let valor = this.value;
+        if(valor > 0 && valor < 999) {
+            let produto = this.dataset.produto;
+
+            let listaCarrinho = JSON.parse(localStorage.getItem("carrinho"));
+    
+            for(let i = 0; i<listaCarrinho.length; i++) {
+                if(produto == listaCarrinho[i].produtoId) {
+                    listaCarrinho[i].quantidade = valor;
+                }
+            }
+    
+            localStorage.setItem("carrinho", JSON.stringify(listaCarrinho));
+    
+            carregarCarrinho();
+        }
+        else{
+            alert("Valor incorreto, selecione entre 0 e 999");
+        }
+
+    }
+
+    function remover() {
+        let produto = this.dataset.produto;
+        let listaCarrinho = JSON.parse(localStorage.getItem("carrinho"));
+
+        listaCarrinho = listaCarrinho.filter(x=> x.produtoId != produto);
+
+        localStorage.setItem("carrinho", JSON.stringify(listaCarrinho));
+
+        carregarCarrinho();
+    }
+    
     // Inicio - Adicionar LocalStorage Carrinho
     function adicionarItemCarrinho(item) {
         let carrinho = localStorage.getItem("carrinho");

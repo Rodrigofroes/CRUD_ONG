@@ -75,6 +75,16 @@ class produtoModel {
         return lista;
     }
 
+    async validarEstoque(produtoId, quantidade) {
+
+        let sql = "select * from produto where id_produto = ? and quantidade >= ?";
+        let valores = [produtoId, quantidade];
+
+        let rows = await banco.ExecutaComando(sql, valores);
+        
+        return rows.length > 0;
+    }
+
     //função cadastrar
     async cadastrar() {
         if(this.#produtoId == 0){

@@ -104,8 +104,6 @@ class produtoController {
         let id = req.params.produto;
         let produto = new produtoModel();
         produto = await produto.buscarProduto(id);
-        console.log(produto + "errado");
-        console.log(id);
 
         res.send({produtoEncontrado: produto});
     }
