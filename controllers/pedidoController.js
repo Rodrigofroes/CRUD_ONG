@@ -41,6 +41,9 @@ class PedidoController {
 
                     produto = await produto.buscarProduto(req.body[i].produtoId);
                     
+                    produto.produtoQuant = produto.produtoQuant - req.body[i].quantidade;
+                    produto.cadastrar();
+
                     pedidoItem.pedidoItemValor = produto.produtoPreco;
             
                     pedidoItem.pedidoItemValorTotal = pedidoItem.pedidoItemQuantidade * pedidoItem.pedidoItemValor;
