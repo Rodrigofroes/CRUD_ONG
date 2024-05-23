@@ -18,16 +18,16 @@ document.addEventListener("DOMContentLoaded", function() {
         let projeto = document.querySelector("#patrimonioProjeto").value;
 
         let listaErros = [];
-        if(nome == "") {
+        if(nome == "" || !/^[a-zA-Z\s]*$/.test(nome)) {
             listaErros.push("patrimonioNome");
         }
         if(descricao == "") {
             listaErros.push("patrimonioDesc");
         }
-        if(quantidade == "") {
+        if(quantidade == 0 || isNaN(quantidade) || quantidade <= 0) {
             listaErros.push("patrimonioQuantidade");
         }
-        if(projeto == 0) {
+        if(projeto == "" || isNaN(projeto) || projeto <= 0) {
             listaErros.push("patrimonioProjeto");
         }
         
@@ -71,5 +71,20 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Preencha corretamente os campos indicados!");
         }
     }
+
+    // Máscara para o campo de preço
+    document.getElementById("patrimonioProjeto").addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Máscara para o campo de quantidade
+    document.getElementById("patrimonioQuantidade").addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Máscara para o campo de nome
+    document.getElementById("patrimonioNome").addEventListener("input", function() {
+        this.value = this.value.replace(/[^a-zA-Z0-9\s]/g, '');
+    });
 
 })

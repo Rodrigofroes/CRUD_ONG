@@ -80,6 +80,20 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             alert("Preencha corretamente os campos indicados!");
         }
-    }
+    } 
 
+    // Máscara para o campo de projeto
+    document.getElementById("eventoProjeto").addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Máscara para o campo de nome
+    document.getElementById("eventoNome").addEventListener("input", function() {
+        this.value = this.value.replace(/[^a-zA-Z0-9\s]/g, '');
+    });
+
+    // Máscara para o campo de local
+    document.getElementById("eventoLocal").addEventListener("input", function() {
+        this.value = this.value.replace(/[^a-zA-Z0-9\s,]/g, '');
+    });
 })

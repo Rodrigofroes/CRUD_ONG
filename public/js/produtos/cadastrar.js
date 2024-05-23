@@ -17,16 +17,16 @@ document.addEventListener("DOMContentLoaded", function() {
         let quantidade = document.querySelector("#produtoQuant").value;
 
         let listaErros = [];
-        if(nome == "") {
+        if(nome == "" || !/^[a-zA-Z\s]*$/.test(nome)) {
             listaErros.push("produtoNome");
         }
         if(descricao == "") {
             listaErros.push("produtoDesc");
         }
-        if(preco == "") {
+        if(preco == "" || isNaN(preco) || preco <= 0) {
             listaErros.push("produtoPreco");
         }
-        if(quantidade == 0) {
+        if(quantidade == 0 || isNaN(quantidade) || quantidade <= 0) {
             listaErros.push("produtoQuant");
         }
 
@@ -69,5 +69,20 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Preencha corretamente os campos indicados!");
         }
     }
+
+    // Máscara para o campo de preço
+    document.getElementById("produtoPreco").addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Máscara para o campo de quantidade
+    document.getElementById("produtoQuant").addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    // Máscara para o campo de nome
+    document.getElementById("produtoNome").addEventListener("input", function() {
+        this.value = this.value.replace(/[^a-zA-Z0-9\s]/g, '');
+    });
 
 })
