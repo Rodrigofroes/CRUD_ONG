@@ -1,18 +1,47 @@
 <script src="/js/produtos/listagem.js"></script>
 <script src="/js/produtos/carrinho.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 
-<h1 class="text-secondary">Produtos cadastradas</h1>
+<h1 class="text-secondary mb-3">Produtos cadastradas</h1>
 
-<a class="btn btn-primary" style="max-width: 200px;" href="produtos/cadastrar">Novo Produto</a>
-<button data-bs-toggle="modal" data-bs-target="#modalCarrinho" class="btn btn-primary" type="button">
-    <i class="fas fa-shopping-cart"></i>
-    <span id="contadorCarrinho" class="badge bg-info text-white ms-1 rounded-pill">0</span>
-</button>
+<div class="d-flex justify-content-between">
+    <div>
+        <a class="btn btn-primary" id="HiddenNovoProduto" style="max-width: 200px;" href="produtos/cadastrar">Novo
+            Produto</a>
+        <button data-bs-toggle="modal" id="HiddenCarrinhoProduto" data-bs-target="#modalCarrinho"
+            class="btn btn-primary" type="button">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="contadorCarrinho" class="badge bg-info text-white ms-1 rounded-pill">0</span>
+        </button>
+    </div>
 
+    <div style="margin-bottom: 15px;">
+        <button id="btnExportarExcel" class="btn btn-primary">Exportar para Excel</button>
+        <button id="btnExportarPdf" onclick="window.print()" class="btn btn-primary">Exportar para PDF</button>
+    </div>
+</div>
+<div style="margin-bottom: 15px;" id="divFiltros">
+    <label for="filtro">Filtro:</label>
+    <div class="input-group">
+        <input id="filtro" type="text" placeholder="Digite um valor a ser filtrado..." class="form-control"
+            aria-label="Text input with dropdown button">
+        <div class="input-group-append">
+            <button id="btnEscolherFiltro" class="btn btn-outline-secondary dropdown-toggle" type="button"
+                data-toggle="dropdown" aria-expanded="false">Filtros</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item itemFiltro" data-valor="1" data-nome="Nº Produto">Nº do Produto</a>
+                <a class="dropdown-item itemFiltro" data-valor="2" data-nome="Nome do Produto">Nome do Produto</a>
+                <a class="dropdown-item itemFiltro" data-valor="3" data-nome="Nome do Projeto">Nome do Projeto</a>
+            </div>
+            <button id="btnFiltrar" class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i>
+                Buscar</button>
+        </div>
+    </div>
+</div>
 <hr>
 <div>
-    <table class="table table-striped">
-        <thead> 
+    <table id="tabelaPedidos" class="table table-striped">
+        <thead>
             <th>Id</th>
             <th>Nome</th>
             <th>Descrição</th>
@@ -40,7 +69,8 @@
                         <%= lista[i].produtoPreco %>
                     </td>
                     <td>
-                        <button data-produtoid="<%= lista[i].produtoId %>" class="btn btn-success btnAddCarrinho"><i class="fas fa-cart-plus"></i></button>
+                        <button data-produtoid="<%= lista[i].produtoId %>" class="btn btn-success btnAddCarrinho"><i
+                                class="fas fa-cart-plus"></i></button>
 
                         <a href="/produtos/alterar/<%= lista[i].produtoId %>" class="btn btn-primary">
                             <i class="fas fa-pen"></i>
@@ -52,7 +82,7 @@
                     </td>
                 </tr>
                 <% } %>
-                
+
         </tbody>
     </table>
 </div>
@@ -94,4 +124,3 @@
         </div>
     </div>
 </div>
-

@@ -10,8 +10,9 @@ class eventoModel {
     #eventoDataFim;
     #eventoLocal;
     #projetoId;
+    #projetoNome;
 
-    constructor(eventoId, eventoNome, eventoDescricao, eventoDataInic, eventoDataFim, eventoLocal, projetoId) {
+    constructor(eventoId, eventoNome, eventoDescricao, eventoDataInic, eventoDataFim, eventoLocal, projetoId, projetoNome) {
         this.#eventoId = eventoId;
         this.#eventoNome = eventoNome;
         this.#eventoDescricao = eventoDescricao;
@@ -19,6 +20,7 @@ class eventoModel {
         this.#eventoDataFim = eventoDataFim;
         this.#eventoLocal = eventoLocal;
         this.#projetoId = projetoId;
+        this.#projetoNome = projetoNome;
     }
 
     get eventoId() { return this.#eventoId; }
@@ -42,18 +44,19 @@ class eventoModel {
     get projetoId() { return this.#projetoId; }
     set projetoId(novoprojetoId) { this.#projetoId = novoprojetoId; }
 
+    get projetoNome() { return this.#projetoNome; }
+    set projetoNome(novoprojetoNome) { this.#projetoNome = novoprojetoNome; }
+
     //função listar tudo
     async listar() {
 
-        let sql = "select * from evento"
+        let sql = "select e.id_evento, e.nome, e.descricao, e.data_inicio, e.data_fim, e.local, e.projeto_id, pro.nome AS nomePatrimonio from evento e inner join projetos pro on e.projeto_id = pro.id_projeto"
         let lista = [];
-
 
         let rows = await banco.ExecutaComando(sql)
 
-
         for (let i = 0; i < rows.length; i++) {
-            lista.push(new eventoModel(rows[i]['id_evento'], rows[i]['nome'], rows[i]['descricao'], rows[i]['data_inicio'], rows[i]['data_fim'], rows[i]['local'], rows[i]['projeto_id']))
+            lista.push(new eventoModel(rows[i]['id_evento'], rows[i]['nome'], rows[i]['descricao'], rows[i]['data_inicio'], rows[i]['data_fim'], rows[i]['local'], rows[i]['projeto_id'], rows[i]['nomePatrimonio']))
         }
         return lista;
     }

@@ -59,6 +59,46 @@ class produtoModel {
         this.#produtoQuant = produtoQuant;
     }
 
+    async listarProduto(termo, filtro) {
+
+        let sqlFiltro = "";
+        if(termo != "") {
+            if(filtro == "1") {
+                termo = "%"+ termo +"%"
+                sqlFiltro = ` where p.id_produto like ?`
+            }
+            else if(filtro == "2") {
+                termo = "%"+ termo +"%"
+                sqlFiltro = ` where p.nome like ?`;
+            }
+            else if(filtro == "3") {
+                termo = "%"+ termo +"%"
+                sqlFiltro = ` where pro.nome like ?`;
+            }
+        }
+
+        let sql = `select p.id_produto, p.nome, p.descricao, p.preco, p.quantidade, pro.nome AS nomeProjeto
+        from produto p inner join projetos pro on p.id_produto = pro.id_projeto ${sqlFiltro};`
+
+        let valores = [];
+        if(sqlFiltro != ""){
+            valores.push(termo);
+        }
+        
+
+        let rows = await banco.ExecutaComando(sql, valores);
+
+        let lista = [];
+
+        for(let i = 0; i<rows.length; i++){
+            let row = rows[i];
+
+            lista.push(new produtoModel(row["id_produto"], row["nome"], row["descricao"], row["preco"], row["quantidade"], row["nomeProjeto"]))
+        }
+
+        return lista;
+    }
+
     //função listar tudo
     async listar() {
 
@@ -99,10 +139,10 @@ class produtoModel {
             return result;
 
         }  else{
-            let sql = "update produto set nome = ?, descricao = ?, preco = ?, quantidade = ?";
+            let sql = "update produto set nome = ?, descricao = ?, preco = ?, quantidade = ? where id_produto = ?";
 
             let valores =[
-                this.#produtoNome, this.#produtoDesc, this.#produtoPreco, this.#produtoQuant
+                this.#produtoNome, this.#produtoDesc, this.#produtoPreco, this.#produtoQuant, this.#produtoId,
             ]
 
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
@@ -126,7 +166,7 @@ class produtoModel {
 
     async excluir(id) {
 
-        let sqlForeign = "delete from tb_pedidoitens where id_produto = '1'; ";
+        let sqlForeign = "delete from tb_pedidoitens where id_produto = ?; ";
 
         let sql = "delete from produto where id_produto = ?";
 
@@ -158,6 +198,8 @@ class produtoModel {
         return {
             "produtoId": this.#produtoId,
             "produtoNome": this.#produtoNome,
+            "produtoDescricao": this.#produtoDesc,
+            "produtoQuantidade": this.#produtoQuant,
             "produtoPreco": this.#produtoPreco,
         }
     }

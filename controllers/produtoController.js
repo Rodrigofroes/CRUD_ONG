@@ -11,7 +11,6 @@ class produtoController {
 
     async cadastroView(req, resp) {
         resp.render("produtos/cadastro");
-        
     }
 
     async cadastrar(req, resp){
@@ -106,6 +105,15 @@ class produtoController {
         produto = await produto.buscarProduto(id);
 
         res.send({produtoEncontrado: produto});
+    }
+
+    async filtrar(req, res) {
+        let termo = req.params.termo;
+        let filtro = req.params.filtro;
+        let produto = new produtoModel();
+        var lista = await produto.listarProduto(termo, filtro);
+
+        res.send(lista);
     }
 }
 
